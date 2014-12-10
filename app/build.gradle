@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "douai.mines.isic.moodplayer"
-        minSdkVersion 15
-        targetSdkVersion 21
+        minSdkVersion 7
+        targetSdkVersion 14
         versionCode 1
         versionName "1.0"
     }
