@@ -15,5 +15,5 @@
         android:layout_height="fill_parent"
         android:text="No songs found on SD Card."/>
 
-    
+
 </LinearLayout>

@@ -8,8 +8,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            class=".MoodPlayer"
             android:name=".MoodPlayer"
+            class=".MoodPlayer"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,5 +18,5 @@
             </intent-filter>
         </activity>
     </application>
-
+    <service class=".MDService" android:process=":remote" />
 </manifest>
