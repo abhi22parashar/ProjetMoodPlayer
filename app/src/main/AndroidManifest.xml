@@ -18,5 +18,5 @@
             </intent-filter>
         </activity>
     </application>
-    <service class=".MDService" android:process=":remote" />
+    <service class=".MPService" android:process=":remote" android:name=".MPService"/>
 </manifest>

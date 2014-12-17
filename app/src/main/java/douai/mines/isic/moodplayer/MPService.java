@@ -3,6 +3,7 @@ package douai.mines.isic.moodplayer;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.DeadObjectException;
 import android.os.IBinder;
@@ -11,7 +12,6 @@ import android.util.Log;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by Gildéric on 11/12/2014.
  */
@@ -23,20 +23,24 @@ public class MPService extends Service {
     private NotificationManager notificationManager;
 
     @Override
-    protected void onCreate() {
+    public void onCreate() {
         super.onCreate();
         notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         mediaPlayer.stop();
         mediaPlayer.release();
         notificationManager.cancel(NOTIFY_ID);
     }
 
     @Override
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
+
     public IBinder getBinder() {
         return mBinder;
     }
@@ -44,8 +48,9 @@ public class MPService extends Service {
     private void playSong(String file) {
         try {
 
-            Notification notification = new Notification(
-                    R.drawable.playbackstart, file, null, file, null);
+            //Notification notification = new Notification(
+            //        R.drawable.playbackstart, file, null, file, null);
+            Notification notification = new Notification() ;
             notificationManager.notify(NOTIFY_ID, notification);
 
             mediaPlayer.reset();
@@ -83,7 +88,7 @@ public class MPService extends Service {
         }
     }
 
-    private final MPServiceInterface.Stub mBinder = new MPServiceInterface.Stub() {
+    private final MPSInterface.Stub mBinder = new MPSInterface.Stub() {
 
         public void playFile(int position) throws DeadObjectException {
             try {
@@ -113,8 +118,9 @@ public class MPService extends Service {
         }
 
         public void pause() throws DeadObjectException {
-            Notification notification = new Notification(
-                    R.drawable.playbackpause, null, null, null, null);
+            //Notification notification = new Notification(
+            //        R.drawable.playbackpause, null, null, null, null);
+            Notification notification = new Notification();
             notificationManager.notify(NOTIFY_ID, notification);
             mediaPlayer.pause();
         }
